@@ -1,32 +1,11 @@
-// const inquirer = require('inquirer')
-// const fs = require('fs')
-import inquirer from 'inquirer';
+import fs from 'fs';
+import { questions } from './lib/prompts.mjs';
+import { generateSVG } from './lib/svgGenerator.mjs';
 
+const main = async () => {
+    const answers = await questions();
+    const svg = generateSVG(answers.shapeColor, answers.shape, answers.textColor, answers.text);
+    fs.writeFileSync('output.svg', svg);
+}
 
-inquirer
-    .prompt([
-        {
-            type: 'input',
-            name: 'text',
-            message: 'Type three characters.',
-        },
-        {
-            type: 'input',
-            name: 'color',
-            message: 'Type in what color you would like?',
-        },
-        {
-            type: 'list',
-            message: 'What shape do you want?',
-            name: 'shape',
-            choices: ['circle', 'triangle', 'square'],
-        },
-        {
-            type: 'input',
-            name: 'shapecolor',
-            message: 'What is the color of your shape?',
-        },
-    ])
-    .then((answers) => {
-         console.log(answers);
-    })
+main();

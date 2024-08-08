@@ -68,8 +68,13 @@
     "wrap-ansi": "^6.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.mjs",
+    "test": "jest"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
+  }
 }
